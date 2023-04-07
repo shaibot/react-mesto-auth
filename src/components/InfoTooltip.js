@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import imgSucces from '../images/successful-registration.svg'
+import imgFault from '../images/fault.svg'
 
-function InfoTooltip ({ name, isOpen, onClose, title }) {
+function InfoTooltip ({ isOpen, onClose, status }) {
+const [content, setContent] = useState({image: '', text: ''})
+
+  useEffect(() => {
+if (status) {
+  setContent({image: imgSucces, text: 'Вы успешно зарегистрировались!'})
+}
+if (!status) {
+  setContent({image: imgFault, text: 'Что-то пошло не так! Попробуйте еще раз.'})
+}
+  })
         return (
           <>
             <div
@@ -10,8 +22,8 @@ function InfoTooltip ({ name, isOpen, onClose, title }) {
             >
               <div className="popup__container">
                 <button className="popup__close" onClick={onClose} />
-                <image className={`popup__notification_type_${name}`}/>
-                <h2 className="popup__title">{title}</h2>                
+                <image className="popup__notification-img" src={content.image} alt={content.text}/>
+                <h2 className="popup__title">{content.text}</h2>                
               </div>
             </div>
           </>
