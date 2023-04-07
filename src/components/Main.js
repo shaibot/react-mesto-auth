@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import Header from "./Header";
 
-function Main ({
+function Main({
   onEditProfile,
   onAddPlace,
   onEditAvatar,
@@ -10,11 +11,19 @@ function Main ({
   onCardDelete,
   onCardLike,
   cards,
+  email,
+  exit,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <>
+      <Header>
+        <div>
+          <p className="header__email">{email}</p>
+          <button onClick={exit} className="header__button">Выйти</button>
+        </div>
+      </Header>
       <main className="content">
         <section className="profile">
           <button

@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-function Auth({ name, title, children, buttonText, onSubmit }) {
+function RegistrationPage({ name, title, children, buttonText, onSubmit }) {
   return (
     <>
       <div
@@ -15,11 +14,10 @@ function Auth({ name, title, children, buttonText, onSubmit }) {
               {buttonText}
             </button>
           </form>
-          <Link to="/sign-up" className="auth__link">Уже зарегистрированы? Войти</Link>
         </div>
       </div>
     </>
   );
 }
 
-export default Auth
+export default RegistrationPage
