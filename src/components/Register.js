@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RegistrationPage from "./RegistrationPage";
 import Header from "./Header";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register({handleRegisterSubmit}) {
   const [isValue, setIsValue] = useState({
