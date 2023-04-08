@@ -1,6 +1,5 @@
 import React from 'react';
 import headerLogo from '../images/header-logo.svg';
-import { Link } from 'react-router-dom';
 
 function Header({ children }) {
   return (

@@ -19,7 +19,7 @@ function Main({
   return (
     <>
       <Header>
-        <div>
+        <div className="header__links">
           <p className="header__email">{email}</p>
           <button onClick={exit} className="header__button">Выйти</button>
         </div>

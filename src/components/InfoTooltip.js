@@ -12,7 +12,7 @@ if (status) {
 if (!status) {
   setContent({image: imgFault, text: 'Что-то пошло не так! Попробуйте еще раз.'})
 }
-  })
+  }, [status])
         return (
           <>
             <div
@@ -20,10 +20,10 @@ if (!status) {
                 isOpen ? "popup_is-opened" : ""
               }`}
             >
-              <div className="popup__container">
+              <div className="popup__container popup__container_type_tooltip">
                 <button className="popup__close" onClick={onClose} />
-                <image className="popup__notification-img" src={content.image} alt={content.text}/>
-                <h2 className="popup__title">{content.text}</h2>                
+                <img className="popup__notification-img" src={content.image} alt={content.text}/>
+                <h2 className="popup__title popup__title_type_tooltip">{content.text}</h2>                
               </div>
             </div>
           </>

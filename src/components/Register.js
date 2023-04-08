@@ -1,7 +1,7 @@
 import { useState } from "react";
 import RegistrationPage from "./RegistrationPage";
 import Header from "./Header";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 function Register({handleRegisterSubmit}) {
   const [isValue, setIsValue] = useState({
@@ -69,7 +69,7 @@ function Register({handleRegisterSubmit}) {
         />
         <span id="input-register-password-error" className="popup__error" />
       </RegistrationPage>
-      <Link to="/sign-up" className="auth__link">Уже зарегистрированы? Войти</Link>
+      <Link to="/sign-in" className="auth__link">Уже зарегистрированы? Войти</Link>
     </>
 
   );
