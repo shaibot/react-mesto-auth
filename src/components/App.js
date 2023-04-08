@@ -62,6 +62,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setSelectedCard({});
+    setOpenToolTip(false)
   };
 
   const handleCardDelete = (card) => {
@@ -168,11 +169,12 @@ function App() {
           setIsLogged(true)
           navigate('/', { replace: true });
           setGetEmail(email)
-          setStatus(true)
+          // setStatus(true)
         }
       })
       .catch((err) => {
         console.log((`${err}`))
+        setOpenToolTip(true)
         setStatus(false)
       })
   }
@@ -198,7 +200,7 @@ function App() {
           console.log((`${err}`))
         })
     }
-  })
+  }, [navigate])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -12,7 +12,7 @@ if (status) {
 if (!status) {
   setContent({image: imgFault, text: 'Что-то пошло не так! Попробуйте еще раз.'})
 }
-  })
+  }, [status])
         return (
           <>
             <div
@@ -22,7 +22,7 @@ if (!status) {
             >
               <div className="popup__container">
                 <button className="popup__close" onClick={onClose} />
-                <image className="popup__notification-img" src={content.image} alt={content.text}/>
+                <img className="popup__notification-img" src={content.image} alt={content.text}/>
                 <h2 className="popup__title">{content.text}</h2>                
               </div>
             </div>

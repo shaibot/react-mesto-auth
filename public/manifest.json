@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "React Mesto",
+  "name": "React-mesto-auth",
   "icons": [
     {
       "src": "favicon.ico",
