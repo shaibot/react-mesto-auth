@@ -152,9 +152,11 @@ function App() {
     auth
       .register(email, password)
       .then(() => {
+        setStatus(true)
         navigate("/sign-in", { replace: true });
       })
       .catch((err) => {
+        setStatus(false)
         console.log(`${err}`);
       })
       .finally(() => {
