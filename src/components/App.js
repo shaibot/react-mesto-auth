@@ -13,6 +13,9 @@ import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
 import * as auth from "../utils/auth.js";
 import Footer from "./Footer";
+import imgSucces from "../images/successful-registration.svg";
+import imgFault from "../images/fault.svg";
+
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -26,11 +29,15 @@ function App() {
   const [isEditAvatarChanging, setIsEditAvatarChanging] = useState(false);
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(false);
-  const [getEmail, setGetEmail] = useState({});
+  const [userEmail, setUserEmail] = useState('');
+  const [textToolTip, setTextToolTip] = useState('');
   const [openToolTip, setOpenToolTip] = useState(false);
   const [status, setStatus] = useState(false);
 
+  // const [infoToolTipData, setInfoToolTipData] = useState({ isOpen:false, status:false })
+
   useEffect(() => {
+    isLogged &&
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userData, cardsData]) => {
         setCurrentUser(userData);
@@ -39,7 +46,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isLogged]);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -153,10 +160,12 @@ function App() {
       .register(email, password)
       .then(() => {
         setStatus(true)
+        setTextToolTip('Вы успешно зарегистрировались!')
         navigate("/sign-in", { replace: true });
       })
       .catch((err) => {
         setStatus(false)
+        setTextToolTip('Что-то пошло не так! Попробуйте еще раз.')
         console.log(`${err}`);
       })
       .finally(() => {
@@ -172,7 +181,7 @@ function App() {
           localStorage.setItem("token", confirm.token); //сохранить токен
           setIsLogged(true);
           navigate("/", { replace: true });
-          setGetEmail(email);
+          setUserEmail(email);
           // setStatus(true);
         }
       })
@@ -180,6 +189,7 @@ function App() {
         console.log(`${err}`);
         setOpenToolTip(true)
         setStatus(false);
+        setTextToolTip('Что-то пошло не так! Попробуйте еще раз.')
       });
   }
 
@@ -198,7 +208,7 @@ function App() {
           if (res) {
             setIsLogged(true);
             navigate("/", { replace: true });
-            setGetEmail(res.data.email);
+            setUserEmail(res.data.email);
           }
         })
         .catch((err) => {
@@ -225,7 +235,7 @@ function App() {
                   onCardLike={handleCardLike}
                   onCardDelete={handleCardDelete}
                   loggedIn={isLogged}
-                  email={getEmail}
+                  email={userEmail}
                   exit={exit}
                 />
               }
@@ -244,6 +254,8 @@ function App() {
             isOpen={openToolTip}
             onClose={closeAllPopups}
             status={status}
+            text={textToolTip}
+            image={status ? imgSucces : imgFault}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}

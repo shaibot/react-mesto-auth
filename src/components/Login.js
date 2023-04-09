@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function Login({ handleLoginSubmit }) {
-  const [isValue, setIsValue] = useState({
+  const [formValues, setFormValues] = useState({
     email: '',
     password: ''
   })
@@ -13,9 +13,9 @@ function Login({ handleLoginSubmit }) {
 
     const { name, value } = evt.target;
 
-    setIsValue({
+    setFormValues({
 
-      ...isValue,
+      ...formValues,
 
       [name]: value
 
@@ -25,7 +25,7 @@ function Login({ handleLoginSubmit }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    const { email, password } = isValue
+    const { email, password } = formValues
     handleLoginSubmit(email, password)
   }
   return (
@@ -49,7 +49,7 @@ function Login({ handleLoginSubmit }) {
         minLength={2}
         maxLength={40}
         required
-        value={isValue.email}
+        value={formValues.email}
         onChange={handleChange}
       />
 
@@ -63,7 +63,7 @@ function Login({ handleLoginSubmit }) {
         minLength={2}
         maxLength={200}
         required
-        value={isValue.password}
+        value={formValues.password}
         onChange={handleChange}
       />
       <span id="input-login-password-error" className="popup__error" />
